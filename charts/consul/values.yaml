@@ -2602,6 +2602,28 @@ connectInject:
   # @type: string
   affinity: null
 
+  # Pod topology spread constraints for connectInject pods.
+  # This should be a multi-line YAML string matching the
+  # [`topologySpreadConstraints`](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/)
+  # array in a Pod Spec.
+  #
+  # This requires K8S >= 1.18 (beta) or 1.19 (stable).
+  #
+  # Example:
+  #
+  # ```yaml
+  # topologySpreadConstraints: |
+  #   - maxSkew: 1
+  #     topologyKey: topology.kubernetes.io/zone
+  #     whenUnsatisfiable: DoNotSchedule
+  #     labelSelector:
+  #       matchLabels:
+  #         app: {{ template "consul.name" . }}
+  #         release: "{{ .Release.Name }}"
+  #         component: connectInject
+  # ```
+  topologySpreadConstraints: ""
+
   # Toleration Settings
   # This should be a multi-line string matching the Toleration array
   # in a PodSpec.
