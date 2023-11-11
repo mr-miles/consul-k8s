@@ -2344,6 +2344,13 @@ connectInject:
     resourceQuota:
       pods: 5000
 
+    # Mark the pod as a critical add-on for rescheduling.
+    tolerations:
+      - key: CriticalAddonsOnly
+        operator: Exists
+      - effect: NoExecute
+        operator: Exists
+
     # The security context for the CNI installer daemonset. This should be a YAML map corresponding to a
     # Kubernetes [SecurityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) object.
     # By default, servers will run as root, with user ID `0` and group ID `0`.
