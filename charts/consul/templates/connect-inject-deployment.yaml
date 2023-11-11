@@ -358,4 +358,8 @@ spec:
       tolerations:
         {{ tpl .Values.connectInject.tolerations . | indent 8 | trim }}
       {{- end }}
+      {{- if .Values.connectInject.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{ tpl .Values.connectInject.topologySpreadConstraints . | indent 8 | trim }}
+      {{- end }}
 {{- end }}
